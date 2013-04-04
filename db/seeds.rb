@@ -5,13 +5,12 @@
 #   name = shell.ask("What's your name?")
 #   shell.say name
 #
-task :development do
+case Padrino.env
+when :development do
   email     = shell.ask "Which email do you want use for logging into admin?"
   password  = shell.ask "Tell me the password to use:"
   shell.say ""
-end
-
-task :production do
+when :production do
   email     = "leemour@gmail.com"
   password  = "12345"
 end
