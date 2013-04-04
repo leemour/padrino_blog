@@ -5,13 +5,13 @@
 #   name = shell.ask("What's your name?")
 #   shell.say name
 #
-configure :development do
+task :development do
   email     = shell.ask "Which email do you want use for logging into admin?"
   password  = shell.ask "Tell me the password to use:"
   shell.say ""
 end
 
-configure :production do
+task :production do
   email     = "leemour@gmail.com"
   password  = "12345"
 end
