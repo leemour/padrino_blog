@@ -18,12 +18,24 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'sass'
 gem 'haml'
 gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'sqlite3'
-gem 'therubyracer'
+
+group :development, :test do 
+  gem 'sqlite3'
+end
+
+group :production do
+ gem 'pg'
+end
 
 # Test requirements
-gem 'shoulda', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
+group :test do
+  gem 'shoulda'
+  gem 'rack-test', :require => 'rack/test'
+end
+
+group :assets do
+  gem 'therubyracer'
+end
 
 # Padrino Stable Gem
 gem 'padrino', '0.11.0'
