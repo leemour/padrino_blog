@@ -1,0 +1,44 @@
+!!! Strict
+%html
+  %head
+    %title= [@title, "Padrino Блог"].compact.join(' | ')
+    = stylesheet_link_tag 'reset', 'application'
+    = javascript_include_tag 'jquery', 'application'
+    = yield_content :include
+  %body
+    #header
+      %h1= link_to 'Тестовый Блог Padrino', '/'
+      %nav
+        %ul.menu
+          %li= link_to 'Блог', url_for(:posts, :index)
+          %li= link_to 'О нас', url_for(:about)
+    
+    #container
+      #main
+      
+        = yield
+        
+      #sidebar
+        - form_tag url_for(:posts, :index), method: 'get' do
+          Искать:
+          = text_field_tag 'query', value: params[:query]
+          = submit_tag 'Поиск'
+          
+        %p Последние Записи
+        %ul.bulleted
+          %li Запись первая - Супер новость для всех!
+          %li Запись вторая - Супер новость для всех!
+          %li Запись третья - Супер новость для всех!
+        %p Категории
+        %ul.bulleted
+          %li Запись первая - Супер новость для всех!
+          %li Запись вторая - Супер новость для всех!
+          %li Запись третья - Супер новость для всех!
+        %p Последние комментарии
+        %ul.bulleted
+          %li Запись первая - Супер новость для всех!
+          %li Запись вторая - Супер новость для всех!
+          %li Запись третья - Супер новость для всех!
+    
+    #footer
+      Это блог Вячеслава Пцарева. Никакого копирайта.

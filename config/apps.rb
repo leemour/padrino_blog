@@ -1,3 +1,30 @@
+# encoding: utf-8
+Padrino.before_load do
+  #Encoding.default_internal = nil
+  # Encoding.default_external = 'ASCII-8BIT'
+end
+
+# this makes haml to treat templates as properly encoded (respect Encoding.default_external)
+module Tilt
+  class HamlTemplate
+    def prepare
+      @data.force_encoding Encoding.default_external
+      options = @options.merge(:filename => eval_file, :line => line)
+      @engine = ::Haml::Engine.new(data, options)
+    end
+  end
+  class CoffeeScriptTemplate
+    def prepare
+      @data.force_encoding Encoding.default_external
+      if !options.key?(:bare) and !options.key?(:no_wrap)
+        options[:bare] = self.class.default_bare
+      end
+    end
+  end
+end
+
+
+
 ##
 # This file mounts each app in the Padrino project to a specified sub-uri.
 # You can mount additional applications using any of these commands below:
