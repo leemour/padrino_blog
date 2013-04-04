@@ -6,11 +6,11 @@
 #   shell.say name
 #
 case Padrino.env
-when :development do
+when :development
   email     = shell.ask "Which email do you want use for logging into admin?"
   password  = shell.ask "Tell me the password to use:"
   shell.say ""
-when :production do
+when :production
   email     = "leemour@gmail.com"
   password  = "12345"
 end
